@@ -116,6 +116,7 @@ Status   : WARNING
 Distance : 7.3 cm
 Status   : CRITICAL
 -----------------------------------
+---
 
 ## 🧪 Simulation Results
 
@@ -130,6 +131,8 @@ Circuit
 -🔴 Critical State
     Object detected at approximately 7 cm.
 
+    ---
+
 ## ▶️ Simulation
 
 The project can be simulated online using Wokwi.
@@ -137,6 +140,8 @@ The project can be simulated online using Wokwi.
 Open Wokwi Simulation
 
 The simulated sensor distance can be changed to observe the system transition between SAFE, WARNING and CRITICAL states.
+
+---
 
 ## 📂 Project Structure
 ultrasonic-proximity-alert-system/
@@ -150,16 +155,24 @@ ultrasonic-proximity-alert-system/
     ├── Safe 48 cm.png
     ├── Warning 19 cm.png
     └── Critical 7 cm.png
+
+    ---
     
 ## 🚀 Future Improvements
 
 Possible extensions to the project include:
 
 -OLED/LCD display for standalone distance visualization
+
 -Adjustable threshold using physical buttons or a potentiometer
+
 -Wireless transmission of proximity alerts
+
 -Integration with a robotic obstacle-avoidance system
+
 -Multiple ultrasonic sensors for wider detection coverage
+
+---
 
 ## 🛠️ Technologies Used
 
@@ -168,6 +181,8 @@ Possible extensions to the project include:
 -HC-SR04 Ultrasonic Sensor
 -Wokwi
 -GitHub
+
+---
 
 ## 👩‍💻 Author
 
