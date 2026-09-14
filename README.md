@@ -70,35 +70,56 @@ The project is currently implemented and tested as a simulation using Wokwi.
 
 ---
 
-## 🧠 Working Principle
+## ⚙️ Working Principle
 
-The HC-SR04 ultrasonic sensor emits an ultrasonic pulse and measures the time taken for the reflected pulse to return.
+The HC-SR04 ultrasonic sensor sends a short ultrasonic pulse through its TRIG pin. When the pulse encounters an object, it is reflected back toward the sensor and received through the ECHO pin.
 
-The Arduino uses this time to calculate the distance between the sensor and the detected object.
+The Arduino measures the time taken for the echo to return and calculates the distance using:
 
-The distance is calculated using:
+```text
+Distance = (Time × Speed of Sound) / 2
+```
 
-**Distance = (Time × Speed of Sound) / 2**
+The division by 2 is required because the ultrasonic wave travels from the sensor to the object and back.
 
-The division by 2 accounts for the ultrasonic wave travelling from the sensor to the object and back.
+The measured distance is then compared with predefined thresholds:
 
-The calculated distance is then compared with predefined thresholds.
+1. If the distance is greater than 30 cm, the system enters the SAFE state.
+2. If the distance is between 15 cm and 30 cm, the system enters the WARNING state.
+3. If the distance is 15 cm or less, the system enters the CRITICAL state.
+4. If no echo is received or the reading is beyond the sensor's reliable range, the system reports NO OBJECT DETECTED.
+
+The current warning and critical thresholds are configurable in the Arduino code.
 
 ---
 
 ## 🚦 Detection States
 
-| Distance | Status | LED | Buzzer |
+The system classifies the detected object into four states based on its distance from the ultrasonic sensor.
+
+| Distance / Condition | LED | Buzzer | Status |
 |---|---|---|---|
-| > 30 cm | 🟢 SAFE | Green | OFF |
-| 15–30 cm | 🟡 WARNING | Yellow | Intermittent |
-| ≤ 15 cm | 🔴 CRITICAL | Red | Rapid |
+| > 30 cm and ≤ 400 cm | 🟢 Green | OFF | SAFE |
+| 15–30 cm | 🟡 Yellow | Slow intermittent beep | WARNING |
+| ≤ 15 cm | 🔴 Red | Fast beep | CRITICAL |
+| No echo / out of range | All OFF | OFF | NO OBJECT DETECTED |
 
 The main warning threshold can be modified directly in the Arduino code:
 
 ```cpp
 const float ALERT_DISTANCE = 30.0;
 ```
+
+The critical threshold can also be modified:
+
+```cpp
+const float CRITICAL_DISTANCE = 15.0;
+```
+
+The system also handles situations where the ultrasonic sensor receives no echo. Instead of incorrectly interpreting a missing echo as zero distance, the system reports **NO OBJECT DETECTED**.
+
+---
+
 ## 💻 Serial Monitor
 
 The system continuously reports the measured distance and current status through the Serial Monitor.
@@ -117,6 +138,10 @@ Status   : WARNING
 
 Distance : 7.3 cm
 Status   : CRITICAL
+-----------------------------------
+
+Distance : OUT OF RANGE
+Status   : NO OBJECT DETECTED
 -----------------------------------
 ```
 ---
