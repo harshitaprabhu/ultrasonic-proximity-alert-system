@@ -121,9 +121,85 @@ Status   : CRITICAL
 ```
 ---
 
+## 🧪 Simulation Results
+
+### Circuit
+
+![Circuit](images/Alarm%20Circuit.png)
+
+### 🟢 Safe State
+
+Object detected at approximately 48 cm.
+
+![Safe State](images/Safe%2048%20cm.png)
+
+### 🟡 Warning State
+
+Object detected at approximately 19 cm.
+
+![Warning State](images/Warning%2019%20cm.png)
+
+### 🔴 Critical State
+
+Object detected at approximately 7 cm.
+
+![Critical State](images/Critical%207%20cm.png)
+
+---
+
+## ▶️ Simulation
+
+The project can be simulated online using Wokwi.
+
+**[Open Wokwi Simulation](https://wokwi.com/projects/475127192526231553)**
+
+The simulated sensor distance can be changed to observe the system transition between SAFE, WARNING, and CRITICAL states.
+
+---
+
+## 📂 Project Structure
+
+```text
+ultrasonic-proximity-alert-system/
+│
+├── README.md
+├── proximity_alert.ino
+├── diagram.json
+│
+└── images/
+    ├── Alarm Circuit.png
+    ├── Safe 48 cm.png
+    ├── Warning 19 cm.png
+    └── Critical 7 cm.png
+```
+
+---
+
+## 🚀 Future Improvements
+
+Possible extensions to the project include:
+
+- OLED/LCD display for standalone distance visualization
+- Adjustable threshold using physical buttons or a potentiometer
+- Wireless transmission of proximity alerts
+- Integration with a robotic obstacle-avoidance system
+- Multiple ultrasonic sensors for wider detection coverage
+
+---
+
+## 🛠️ Technologies Used
+
+- Arduino Uno
+- C/C++
+- HC-SR04 Ultrasonic Sensor
+- Wokwi
+- GitHub
+
+---
+
 ## 👩‍💻 Author
 
-Harshita Prabhu
+**Harshita Prabhu Thiagarajan**
 
 Student Project | Embedded Systems & Robotics
 
