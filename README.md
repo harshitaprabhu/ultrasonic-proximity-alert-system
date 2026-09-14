@@ -191,7 +191,7 @@ The project can be simulated online using Wokwi.
 
 **[Open Wokwi Simulation](https://wokwi.com/projects/475127192526231553)**
 
-The simulated sensor distance can be changed to observe the system transition between SAFE, WARNING, and CRITICAL states.
+The simulated sensor distance can be changed to observe the system transition between SAFE, WARNING, CRITICAL, and OUT OF RANGE states.
 
 ---
 
