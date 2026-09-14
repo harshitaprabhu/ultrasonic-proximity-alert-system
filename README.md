@@ -6,11 +6,12 @@ A real-time, configurable proximity detection and alert system developed using a
 
 This project detects objects in front of an ultrasonic sensor and determines their proximity based on configurable distance thresholds.
 
-The Arduino continuously measures the distance of an object using the HC-SR04 ultrasonic sensor. Based on the measured distance, the system classifies the object into one of three states:
+The Arduino continuously measures the distance of an object using the HC-SR04 ultrasonic sensor. Based on the measured distance, the system classifies the object into one of four states:
 
 - 🟢 SAFE
 - 🟡 WARNING
 - 🔴 CRITICAL
+- ⚪ OUT OF RANGE
 
 Each state is indicated using a dedicated LED, while an audible buzzer provides an additional warning. The measured distance and current system status are also displayed through the Serial Monitor.
 
@@ -34,7 +35,7 @@ The project is currently implemented and tested as a simulation using Wokwi.
 
 - Real-time distance measurement
 - Configurable warning threshold
-- Three-level proximity classification
+- Four-level proximity classification
 - Green, yellow and red LED indicators
 - Distance-dependent buzzer alerts
 - Serial Monitor output
@@ -148,27 +149,39 @@ Status   : NO OBJECT DETECTED
 
 ## 🧪 Simulation Results
 
+The system was tested under different object-distance conditions using the Wokwi simulation environment.
+
 ### Circuit
 
 ![Circuit](images/Alarm%20Circuit.png)
 
 ### 🟢 Safe State
 
-Object out of warning range (48 cm).
+Object detected at approximately 48 cm.
+The green LED remains ON, indicating that the object is outside the warning threshold.
 
 ![Safe State](images/Safe%2048%20cm.png)
 
 ### 🟡 Warning State
 
 Object detected at approximately 19 cm.
+The yellow LED turns ON and the buzzer produces intermittent warning beeps.
 
 ![Warning State](images/Warning%2019%20cm.png)
 
 ### 🔴 Critical State
 
 Object detected at approximately 7 cm.
+The red LED turns ON and the buzzer produces rapid warning beeps.
 
 ![Critical State](images/Critical%207%20cm.png)
+
+### ⚪ No Object Detected / Out of Range
+
+When the sensor does not receive a valid echo, the system does not interpret the reading as zero distance. Instead, it reports **NO OBJECT DETECTED**.
+All LEDs and the buzzer remain OFF.
+
+![Out of Range](images/Out%20of%20range.png)
 
 ---
 
@@ -195,9 +208,9 @@ ultrasonic-proximity-alert-system/
     ├── Alarm Circuit.png
     ├── Safe 48 cm.png
     ├── Warning 19 cm.png
-    └── Critical 7 cm.png
+    ├── Critical 7 cm.png
+    └── Out of range.png
 ```
-
 ---
 
 ## 🚀 Future Improvements
