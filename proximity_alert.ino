@@ -13,6 +13,13 @@ const float ALERT_DISTANCE = 30.0;
 // Critical distance threshold
 const float CRITICAL_DISTANCE = 15.0;
 
+// Maximum reliable detection distance
+const float MAX_DISTANCE = 400.0;
+
+
+// ========================================
+// Measure distance using HC-SR04
+// ========================================
 
 float measureDistance() {
 
@@ -25,15 +32,24 @@ float measureDistance() {
 
   digitalWrite(TRIG_PIN, LOW);
 
-  // Measure echo duration
-  long duration = pulseIn(ECHO_PIN, HIGH);
+  // Wait for echo
+  long duration = pulseIn(ECHO_PIN, HIGH, 30000);
 
-  // Convert time to distance in cm
+  // No echo received
+  if (duration == 0) {
+    return -1;
+  }
+
+  // Convert echo time to distance in cm
   float distance = duration * 0.0343 / 2;
 
   return distance;
 }
 
+
+// ========================================
+// Control LEDs
+// ========================================
 
 void setLEDs(bool green, bool yellow, bool red) {
 
@@ -42,6 +58,10 @@ void setLEDs(bool green, bool yellow, bool red) {
   digitalWrite(RED_LED, red);
 }
 
+
+// ========================================
+// Setup
+// ========================================
 
 void setup() {
 
@@ -68,40 +88,67 @@ void setup() {
   Serial.print(CRITICAL_DISTANCE);
   Serial.println(" cm");
 
+  Serial.print("Maximum range     : ");
+  Serial.print(MAX_DISTANCE);
+  Serial.println(" cm");
+
   Serial.println("-----------------------------------");
 }
 
+
+// ========================================
+// Main Loop
+// ========================================
 
 void loop() {
 
   float distance = measureDistance();
 
-  Serial.print("Distance : ");
-  Serial.print(distance, 1);
-  Serial.println(" cm");
+
+  // ========================================
+  // NO OBJECT / OUT OF RANGE
+  // ========================================
+
+  if (distance < 0 || distance > MAX_DISTANCE) {
+
+    setLEDs(LOW, LOW, LOW);
+
+    noTone(BUZZER_PIN);
+
+    Serial.println("Distance : OUT OF RANGE");
+    Serial.println("Status   : NO OBJECT DETECTED");
+  }
 
 
-  // =========================
+  // ========================================
   // SAFE STATE
-  // =========================
+  // ========================================
 
-  if (distance > ALERT_DISTANCE) {
+  else if (distance > ALERT_DISTANCE) {
 
     setLEDs(HIGH, LOW, LOW);
 
     noTone(BUZZER_PIN);
 
+    Serial.print("Distance : ");
+    Serial.print(distance, 1);
+    Serial.println(" cm");
+
     Serial.println("Status   : SAFE");
   }
 
 
-  // =========================
+  // ========================================
   // WARNING STATE
-  // =========================
+  // ========================================
 
   else if (distance > CRITICAL_DISTANCE) {
 
     setLEDs(LOW, HIGH, LOW);
+
+    Serial.print("Distance : ");
+    Serial.print(distance, 1);
+    Serial.println(" cm");
 
     Serial.println("Status   : WARNING");
 
@@ -114,13 +161,17 @@ void loop() {
   }
 
 
-  // =========================
+  // ========================================
   // CRITICAL STATE
-  // =========================
+  // ========================================
 
   else {
 
     setLEDs(LOW, LOW, HIGH);
+
+    Serial.print("Distance : ");
+    Serial.print(distance, 1);
+    Serial.println(" cm");
 
     Serial.println("Status   : CRITICAL");
 
