@@ -11,7 +11,7 @@ The Arduino continuously measures the distance of an object using the HC-SR04 ul
 - 🟢 SAFE
 - 🟡 WARNING
 - 🔴 CRITICAL
-- ⚪ OUT OF RANGE
+- ⚪ NO OBJECT DETECTED
 
 Each state is indicated using a dedicated LED, while an audible buzzer provides an additional warning. The measured distance and current system status are also displayed through the Serial Monitor.
 
@@ -22,7 +22,7 @@ The project is currently implemented and tested as a simulation using Wokwi.
 ## 🎯 Objectives
 
 - Measure object distance using an ultrasonic sensor.
-- Implement real-time proximity detection.
+- Implement real-time proximity detection logic.
 - Create configurable distance thresholds.
 - Provide visual alerts using LEDs.
 - Provide audible alerts using a buzzer.
@@ -35,9 +35,10 @@ The project is currently implemented and tested as a simulation using Wokwi.
 
 - Real-time distance measurement
 - Configurable warning threshold
-- Four-level proximity classification
+- Four-state proximity classification
 - Green, yellow and red LED indicators
 - Distance-dependent buzzer alerts
+- Out-of-range and missing-echo handling
 - Serial Monitor output
 - Arduino-based control logic
 - Wokwi simulation
@@ -181,7 +182,7 @@ The red LED turns ON and the buzzer produces rapid warning beeps.
 When the sensor does not receive a valid echo, the system does not interpret the reading as zero distance. Instead, it reports **NO OBJECT DETECTED**.
 All LEDs and the buzzer remain OFF.
 
-![Out of Range](images/Out%20of%20range.png)
+![Out of range](images/Out%20of%20range.png)
 
 ---
 
