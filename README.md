@@ -163,13 +163,9 @@ ultrasonic-proximity-alert-system/
 Possible extensions to the project include:
 
 -OLED/LCD display for standalone distance visualization
-
 -Adjustable threshold using physical buttons or a potentiometer
-
 -Wireless transmission of proximity alerts
-
 -Integration with a robotic obstacle-avoidance system
-
 -Multiple ultrasonic sensors for wider detection coverage
 
 ---
