@@ -129,7 +129,7 @@ Status   : CRITICAL
 
 ### 🟢 Safe State
 
-Object detected at approximately 48 cm.
+Object out of warning range (48 cm).
 
 ![Safe State](images/Safe%2048%20cm.png)
 
