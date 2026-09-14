@@ -1,6 +1,6 @@
 # Ultrasonic Proximity Alert System
 
-A real-time, configurable proximity detection and alert system developed using an Arduino Uno and HC-SR04 ultrasonic sensor.
+A configurable proximity detection and alert system simulated using an Arduino Uno and HC-SR04 ultrasonic sensor.
 
 ## 📌 Overview
 
