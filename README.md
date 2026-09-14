@@ -101,9 +101,11 @@ const float ALERT_DISTANCE = 30.0;
 ```
 ## 💻 Serial Monitor
 
-The system continuously reports the measured distance and current status.
+The system continuously reports the measured distance and current status through the Serial Monitor.
 
-Example:
+### Example Output
+
+```text
 -----------------------------------
 Distance : 48.2 cm
 Status   : SAFE
@@ -116,68 +118,7 @@ Status   : WARNING
 Distance : 7.3 cm
 Status   : CRITICAL
 -----------------------------------
----
-
-## 🧪 Simulation Results
-
-Circuit
-
--🟢 Safe State
-    Object detected at approximately 48 cm.
-
--🟡 Warning State
-    Object detected at approximately 19 cm.
-
--🔴 Critical State
-    Object detected at approximately 7 cm.
-
-    ---
-
-## ▶️ Simulation
-
-The project can be simulated online using Wokwi.
-
-Open Wokwi Simulation
-
-The simulated sensor distance can be changed to observe the system transition between SAFE, WARNING and CRITICAL states.
-
----
-
-## 📂 Project Structure
-ultrasonic-proximity-alert-system/
-│
-├── README.md
-├── proximity_alert.ino
-├── diagram.json
-│
-└── images/
-    ├── Alarm Circuit.png
-    ├── Safe 48 cm.png
-    ├── Warning 19 cm.png
-    └── Critical 7 cm.png
-
-    ---
-    
-## 🚀 Future Improvements
-
-Possible extensions to the project include:
-
--OLED/LCD display for standalone distance visualization
--Adjustable threshold using physical buttons or a potentiometer
--Wireless transmission of proximity alerts
--Integration with a robotic obstacle-avoidance system
--Multiple ultrasonic sensors for wider detection coverage
-
----
-
-## 🛠️ Technologies Used
-
--Arduino
--C/C++
--HC-SR04 Ultrasonic Sensor
--Wokwi
--GitHub
-
+```
 ---
 
 ## 👩‍💻 Author
